@@ -1,6 +1,5 @@
 # BonteKoe
-Our ALA
+This branch is the branch where we store our docs.
+>`git pull` is just too much work!
 
->You really shouldnt be here
-
-##This is just a test!
+>**You really shouldnt be here**
