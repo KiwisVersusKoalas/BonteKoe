@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 mei 2016 om 14:37
+-- Gegenereerd op: 25 mei 2016 om 15:39
 -- Serverversie: 10.1.10-MariaDB
 -- PHP-versie: 5.6.19
 
@@ -31,9 +31,17 @@ CREATE TABLE `rest_klant` (
   `Naam` varchar(255) NOT NULL COMMENT 'Naam of said user',
   `Email` varchar(255) NOT NULL COMMENT 'Email of said user',
   `Datum` int(11) NOT NULL COMMENT 'Date of reservation',
-  `Time` int(4) NOT NULL COMMENT 'Time of reservation ',
+  `Time` int(4) NOT NULL,
   `Nummer` int(3) NOT NULL COMMENT 'A Foreign key (RET_TAFEL)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='User table';
+
+--
+-- Gegevens worden geëxporteerd voor tabel `rest_klant`
+--
+
+INSERT INTO `rest_klant` (`ID`, `Naam`, `Email`, `Datum`, `Time`, `Nummer`) VALUES
+(1, 'a a', 'aa@aa.com', 2016, 0, 1),
+(3, 'curig Parrott', '1016413@idcollege.nl', 2016, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -85,13 +93,11 @@ INSERT INTO `rest_tafel` (`Tafelnummer`) VALUES
 --
 ALTER TABLE `rest_klant`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `Time` (`Time`),
   ADD KEY `ID` (`ID`),
   ADD KEY `ID_2` (`ID`),
   ADD KEY `ID_3` (`ID`),
   ADD KEY `Nummer` (`Nummer`),
-  ADD KEY `Nummer_2` (`Nummer`),
-  ADD KEY `Time_2` (`Time`);
+  ADD KEY `Nummer_2` (`Nummer`);
 
 --
 -- Indexen voor tabel `rest_tafel`
@@ -107,7 +113,7 @@ ALTER TABLE `rest_tafel`
 -- AUTO_INCREMENT voor een tabel `rest_klant`
 --
 ALTER TABLE `rest_klant`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT COMMENT 'User key/ID';
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT COMMENT 'User key/ID', AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT voor een tabel `rest_tafel`
 --
