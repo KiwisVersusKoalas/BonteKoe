@@ -2,8 +2,6 @@
   <h1>Formulier</h1>
   <?php
   include_once 'config.php';
-  ?>
-  <?php 
   if(isset($_POST['submit'])){ //check if form was submitted
     $time = 2;
     $cool = true;
@@ -11,8 +9,8 @@
       $time = $_POST['Time'];
       $datum = $_POST['Datum'];
       $nummer = $_POST['Nummer'];
-                $Email = $_POST['Email'];
-          $Naam = $_POST['voornaam'] .' '. $_POST['achternaam'];
+      $Email = $_POST['Email'];
+      $Naam = $_POST['voornaam'] .' '. $_POST['achternaam'];
       $stmt = $conn->prepare("SELECT * from rest_klant where Time = ". $time . " AND Datum = ".$datum . " AND Nummer = ". $nummer);
       $stmt->execute();
       if($stmt->rowCount() > 0)
@@ -24,15 +22,14 @@
         $stmtVoor = $conn->prepare("SELECT * from rest_klant where Time = ". $timeVoor . " AND Datum = ".$datum . " AND Nummer = ". $nummer);
         $stmtNa->execute();
         $stmtVoor->execute();
-        if($stmtNa->rowCount() > 0 && $stmtVoor->rowCount() > 0)
-        {
+        if($stmtNa->rowCount() > 0 && $stmtVoor->rowCount() > 0) {
           echo 'Het uur erna en het uur ervoor niet mogelijk!';
         }
         elseif ($stmtNa->rowCount() > 0) {
           echo 'Het uur ervoor is mogelijlk!';
         }
         elseif ($stmtVoor->rowCount() > 0) {
-          echo 'Het uur ena is mogelijk!';
+          echo 'Het uur erna is mogelijk!';
         }
         else{
           echo 'Het uur ervoor en erna zijn mogelijk!';
@@ -40,7 +37,7 @@
       }
       else{
         try {
-            //insert one row
+          //insert one row
           $Datum = $_POST['Datum'];
           $Time = $_POST['Time'];
           $Nummer = $_POST['Nummer'];
@@ -60,7 +57,7 @@
 // In case any of our lines are larger than 70 characters, we should use wordwrap()
 $message = wordwrap($message, 70, "\r\n");
 
-// Send
+// Send email
 mail($Email, 'Reservering', $message);
 
         }catch (PDOException $ex){
@@ -72,7 +69,6 @@ mail($Email, 'Reservering', $message);
     }
   }
   
-
   ?>
   <form action="" method="POST">
   <h3>Voornaam</h3>
@@ -97,9 +93,7 @@ mail($Email, 'Reservering', $message);
       for($i = 1; $i < 26; $i++){
         print('<option value='.$i.'>'.$i.'</option>');
       }
-
       ?>
-
     </select>      
     <input type="submit" name="submit">
   </form>
